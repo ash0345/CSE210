@@ -46,3 +46,5 @@ class Program
         }
     }
 }
+
+// put code into a txt file
