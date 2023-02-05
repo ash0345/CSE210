@@ -1,0 +1,7 @@
+150
+1|read my book|read 10 min a day|100|False
+1|ride my bike|ride daily|150|True
+2|study 10 min daily|Study scriputures|50|False
+1|read 10 min a day|read my book|100|False
+1|ride daily|ride my bike|150|False
+2|Study scriputures|study 10 min daily|50|False
