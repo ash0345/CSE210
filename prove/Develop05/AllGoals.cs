@@ -23,40 +23,6 @@ public class AllGoals
         {
             Console.Write("\n"+goal.ToString());
         }
-
-        int completedGoalCount = 0;
-
-        if(allGoals.Count() > 0)
-        {
-            foreach(Goal goal in allGoals)
-            {
-                if(goal.getGoalType() == 1)
-                {
-                    if(((Simple)goal).getGoalComplete())
-                    {
-                        completedGoalCount++;
-                    }
-                }
-                else
-                if(goal.getGoalType() == 2)
-                {
-                    if(((Eternal)goal).getGoalComplete())
-                    {
-                        completedGoalCount++;
-                    }
-                }                
-                else
-                if(goal.getGoalType() == 3)
-                {
-                    if(((Checklist)goal).getGoalComplete())
-                    {
-                        completedGoalCount++;
-                    }
-                }
-            }
-
-            Console.WriteLine("\n\n ≈≈ You've completed goals ≈≈ "+completedGoalCount + "/"+ allGoals.Count+"\n");
-        }
     }
     public void SaveGoals()
     {
@@ -110,7 +76,7 @@ public class AllGoals
     }
     public string DisplayGetGoalFile()
     {
-        Console.Write("What is the filename for the foal file? ");
+        Console.Write("What is the filename for the goal file? ");
         return Directory.GetCurrentDirectory() + "\\Files\\" + Console.ReadLine();
     }
     public void DisplayGoalsRecordEvent()
@@ -118,12 +84,20 @@ public class AllGoals
         Console.WriteLine("The goals are:");
         foreach (Goal goal in allGoals)
         {
-            Console.WriteLine(string.Format("{0} {1}", allGoals.IndexOf(goal) + 1, goal.getGoalName()));
+            Console.WriteLine(string.Format("{0}. {1}", allGoals.IndexOf(goal) + 1, goal.getGoalName()));
         }
         Console.Write("Which goal did you accomplish? ");
         int recordEvent = int.Parse(Console.ReadLine()) - 1;
         allGoals[recordEvent].RecordEvent();
         totalPoints += allGoals[recordEvent].getGoalPoints();
+        if (allGoals[recordEvent].GetType() == typeof(Checklist))
+        {
+            Checklist goal = (Checklist)allGoals[recordEvent];
+            if (goal.getGoalComplete() == true)
+            {
+                totalPoints += allGoals[recordEvent].getBonusPoints();
+            }
+        }
 
         Console.WriteLine(string.Format("You now have {0} points.", totalPoints.ToString()));
     }

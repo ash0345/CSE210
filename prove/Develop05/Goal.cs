@@ -20,7 +20,14 @@ public class Goal
         goalName = _goalName;
         points = _points;
     }
-
+    public int getBonusPoints()
+    {
+        return bonusPoints;
+    }
+    public void setBonusPoints(int _bonusPoints)
+    {
+        bonusPoints = _bonusPoints;
+    }
     public virtual string ToCSVRecord()
     {
         return string.Empty;
@@ -87,6 +94,7 @@ public class Goal
         Console.Write("How many times does this goal need to be accomplished to get a bonus? ");
         accomplishAmount = int.Parse(Console.ReadLine());
     }
+    
     public void DisplayGetBonusPoints()
     {
         Console.Write("What is the bonus for accomplishing it that many times? ");

@@ -19,12 +19,11 @@ class Program
             {
                 case 1:
                     int createNewGoalSelection = menu.DisplayGetCreateNewGoalMenu();
-                    Goal goal = null;
+                    var goal = new Goal();
                     switch (createNewGoalSelection)
                     {
                         case 1:
                             goal = new Simple();
-                            //goal.DisplayGetGoalType();
                             goal.DisplayGetGoalName();
                             goal.DisplayGetGoalDescription();
                             goal.DisplayGetGoalPoints();
@@ -65,5 +64,3 @@ class Program
         }
     }
 }
-
-// I added a total completed count to my program

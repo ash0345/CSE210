@@ -4,6 +4,7 @@ public class Checklist : Goal
 {
     private const int goalType = 3;
     private bool goalComplete;
+    private int completedChecklistCount = 0;
 
     public Checklist():base()
     {  
@@ -21,19 +22,12 @@ public class Checklist : Goal
     {
         accomplishAmount = _accomplishAmount;
     }
-    public int getBonusPoints()
-    {
-        return bonusPoints;
-    }
-    public void setBonusPoints(int _bonusPoints)
-    {
-        bonusPoints = _bonusPoints;
-    }
 
     public bool getGoalComplete()
     {
         return goalComplete;
-    }  
+    } 
+
     public override string ToCSVRecord()
     {
         return string.Format("{0}|{1}|{2}|{3}|{4}", goalType, getGoalName(), getGoalDescription(), getGoalPoints(), goalComplete);
@@ -41,23 +35,26 @@ public class Checklist : Goal
 
     public override string ToString()
     {
-        int completedChecklistCount = 0;
-
         if(completedChecklistCount == accomplishAmount)
         {
             return string.Format("[{0}] {1} ({2})\t ---- Completed goals : {3}/{4}\n", ((goalComplete == false) ? " " : "X"), getGoalName(), getGoalDescription(), completedChecklistCount, accomplishAmount);
         }
         else
         {
-            Console.WriteLine($"[ ] {getGoalName()} ({getGoalDescription()}) ---- Completed goals : {completedChecklistCount - 1}/{accomplishAmount}\n");
-            completedChecklistCount++;
-            return;
+            return string.Format("[ ] {0} ({1})\t ---- Completed goals : {2}/{3}\n\n", getGoalName(), getGoalDescription(), completedChecklistCount, accomplishAmount);
         }
     }
 
     public override void RecordEvent()
     {
-        Console.WriteLine(string.Format("Congratulations! You have earned {0}", getGoalPoints()));
-        goalComplete = true;
+        completedChecklistCount++;
+        if (completedChecklistCount == accomplishAmount)
+        {
+            int bonusTotal = bonusPoints + getGoalPoints();
+            Console.WriteLine(string.Format("Congratulations! You have earned {0}", bonusTotal));
+            goalComplete = true;
+        } else {
+            Console.WriteLine(string.Format("Congratulations! You have earned {0}", getGoalPoints()));
+        }
     }
 }
