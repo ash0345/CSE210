@@ -6,31 +6,44 @@ public class Order
     private double shippingCost;
     public List<Product> productsList = new List<Product>();
     public List<double> productsPriceList = new List<double>();
-    private Customer customer = new Customer();
+    Customer customer;
     private Address address = new Address();
+    private string shippingLabel;
 
     public Order()
     {
     }
 
-    // public string displayShippingLabel()
-    // {
-    //     // name and address
-    //     return string.Format("Ship to:\n{0}\n{1}}", customer.getCustomerName(), address.toString());
-    // }
+    // public set customer
+    public void setCustomer(Customer _customer)
+    {
+        customer = _customer;
+    }
 
-    // public void displayPackingLabel()
-    // {
-    //     // name and product id for each item in the list (foreach)
-    //     foreach (Product product in productsList)
-    //     {
-    //         return string.Format("•{0}", product);
-    //     }
-    // }
+    // setter
+    public void setShippingLabel(string _shippingLabel)
+    {
+        shippingLabel = _shippingLabel;
+    }
+    public void displayShippingLabel()
+    {
+        // name and address
+        shippingLabel = string.Format("\nShip to:\n{0}\n{1}", customer.getCustomerName(), customer.getCustomerAddress());
+        Console.WriteLine(shippingLabel);
+    }
+
+    public void displayPackingLabel()
+    {
+        // name and product id for each item in the list (foreach)
+        foreach (Product product in productsList)
+        {
+            Console.WriteLine(product.formatProduct());
+        }
+    }
 
     public void getShippingCost()
     {
-        bool local = address.returnLocal(); //not working check where local is wrong
+        bool local = customer.getLocal(); //address.returnLocal(); //customer.getLocal
 
         if (local == true)
         {
@@ -52,6 +65,6 @@ public class Order
     }
     public string displayCost()
     {
-        return string.Format("Total Cost: ${0}", orderCost);
+        return string.Format("\nTotal Cost: ${0}", orderCost);
     }
 }

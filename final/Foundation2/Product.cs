@@ -16,6 +16,11 @@ public class Product
         quantity = _quantity;
     }
 
+    public string formatProduct()
+    {
+        return String.Format("• {0}, ID: {1}, ${2}, Quantity: {3}", productName, productId, itemPrice, quantity);
+    }
+
     public double calculatePrice()
     {
         // price * quantity

@@ -18,6 +18,16 @@ public class Address
         country = _country;
     }
 
+    public string getCountry()
+    {
+        return country;
+    }
+
+    public void setCountry(string _country)
+    {
+        country = _country;
+    }
+
     public bool returnLocal()
     {
         if (country == "USA")

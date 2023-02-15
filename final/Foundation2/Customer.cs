@@ -15,13 +15,27 @@ public class Customer
         name = _name;
     }
 
+    // set address
+    public void setCustomerAddress(Address _address)
+    {
+        address = _address;
+    }
+
     public string getCustomerName()
     {
         return name;
     }
 
-    public void getLocal()
+    public bool getLocal()
     {
         livesUSA = address.returnLocal();
+        return livesUSA;
     }
+
+    // get customer address get address.tostring
+    public string getCustomerAddress()
+    {
+        return address.toString();
+    }
+
 }
