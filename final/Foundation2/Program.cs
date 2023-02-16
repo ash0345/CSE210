@@ -4,7 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Your Orders:");
+        Console.WriteLine("\nYour Orders:");
+
+        Console.WriteLine("_______________________________________________");
+        Console.WriteLine();
 
         // create at least two orders with a 2-3 products each
         Order order1 = new Order();
@@ -75,5 +78,8 @@ class Program
         order2.getShippingCost();
         order2.calculateCost();
         Console.WriteLine(order2.displayCost());
+
+        Console.WriteLine("_______________________________________________");
+        Console.WriteLine();
     }
 }
